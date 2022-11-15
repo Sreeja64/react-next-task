@@ -38,7 +38,7 @@ function register({ states, countries }) {
 }, []);
   const submit = async (e) => {
     e.preventDefault()
-    const res = await fetch('https://uatservice.fodxpert.com/auth/register/', {
+    const res = await fetch('https://uatapi.fodxpert.com/api/memberRegistration/', {
       method: 'POST', 
       headers: {
         'Accept': 'application/json, text/plain, */*',

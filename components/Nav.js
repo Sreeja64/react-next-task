@@ -9,6 +9,11 @@ export default function Nav() {
     const clearSessionStorage = () => {
         sessionStorage.removeItem('token')
     }
+    let token = ''
+    if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        token = sessionStorage.getItem('token')
+      }
     return (
         <nav className={styles.nav}>
             <Image
@@ -28,17 +33,18 @@ export default function Nav() {
                         About
                     </Link>
                 </li>
+                {!token
+                    ? <><li>
+                        <Link href='/login'>Sign in</Link>
+                    </li><li>
+                            <Link href='/register'>Sign up</Link>
+                        </li></>
+                    : <li>
+                        <Link href='/' onClick={clearSessionStorage}>Sign out</Link>
+                    </li>
+                }
 
-                <li>
-                    <Link href='/login'>Sign in</Link>
-                </li>
-                <li>
-                    <Link href='/register'>Sign up</Link>
-                </li>
 
-                <li>
-                    <Link href='/' onClick={clearSessionStorage}>Sign out</Link>
-                </li>
                 <li>
                     <Link href='/profile'><CgProfile color='#32B7E8' size={30} /></Link>
                 </li>
